@@ -1,0 +1,65 @@
+.mainPanel {
+    width: 640px;
+    height: 100%;
+    background-color: rgb(33, 36, 47);
+    border-left-color: rgb(5, 5, 5);
+    border-right-color: rgb(5, 5, 5);
+    border-top-color: rgb(5, 5, 5);
+    border-bottom-color: rgb(5, 5, 5);
+    border-right-width: 4px;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    flex-grow: 1;
+    translate: 0 0;
+}
+
+.veAttributes {
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+.txtAttributes {
+    width: 60%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    -unity-text-align: middle-center;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+}
+
+.lvlAttributes {
+    height: 100%;
+    width: 20%;
+    -unity-text-align: middle-center;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+}
+
+.LvlUpButton {
+    width: 20px;
+    height: 20px;
+    background-image: url('project://database/Assets/Textures/UI/plusik.png?fileID=21300000&guid=2e84fa48011665042ade1417e1121303&type=3#plusik');
+    -unity-background-image-tint-color: rgb(62, 161, 40);
+    background-color: rgba(0, 0, 0, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.LvlUpButton:hover {
+    -unity-background-image-tint-color: rgb(60, 241, 19);
+    scale: 1.3 1.3;
+}
+
+.LvlUpButton:active {
+    -unity-background-image-tint-color: rgb(60, 192, 19);
+    scale: 1 1;
+}

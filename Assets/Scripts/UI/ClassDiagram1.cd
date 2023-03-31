@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameOverUIController">
+    <Position X="2.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAACABAAAAAAAAAAAAAAIAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\UI\GameOverUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HeroPanelUIControler">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQAAAAIAAIBAAAgBAAggAAAABAQwAAYAIAAAAAACBA=</HashCode>
+      <FileName>Assets\Scripts\UI\HeroPanelUIControler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InventoryUIController">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIAAAAAQAAAAAABAAAAAAIAAAAAAAACEA=</HashCode>
+      <FileName>Assets\Scripts\UI\InventoryUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OptionsUIController">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAEAAEAAAAAAAIAFQAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\UI\OptionsUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuUIController">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAAABAAAAIAAAAAAAAAAIABAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\UI\MenuUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ExpBar">
+    <Position X="8.25" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="ExpBar.UxmlFactory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UI Scripts\UXML Documents\Exp&amp;HP Bars\ExpBar.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="ExpBar.UxmlTraits" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UI Scripts\UXML Documents\Exp&amp;HP Bars\ExpBar.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\UI Scripts\UXML Documents\Exp&amp;HP Bars\ExpBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HpBar">
+    <Position X="10" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="HpBar.UxmlFactory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UI Scripts\UXML Documents\Exp&amp;HP Bars\HpBar.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="HpBar.UxmlTraits" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UI Scripts\UXML Documents\Exp&amp;HP Bars\HpBar.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\UI Scripts\UXML Documents\Exp&amp;HP Bars\HpBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InventorySlot">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="InventorySlot.UxmlFactory" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UI Scripts\UXML Documents\HeroPanel\InventorySlot.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="InventorySlot.UxmlTraits" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\UI Scripts\UXML Documents\HeroPanel\InventorySlot.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\UI Scripts\UXML Documents\HeroPanel\InventorySlot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

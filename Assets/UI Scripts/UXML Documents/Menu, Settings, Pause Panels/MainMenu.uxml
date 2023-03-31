@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Scripts/Style%20Sheets/Menu.uss?fileID=7433441132597879392&amp;guid=6a0a36e49d8c3514aa9c3cb04e563961&amp;type=3#Menu" />
+    <ui:VisualElement name="root" style="flex-grow: 1; align-items: center; background-image: url(&apos;project://database/Assets/Textures/UI/background.png?fileID=21300000&amp;guid=afd834b415bdd4fe8929f2057d6698a2&amp;type=3#background&apos;);">
+        <ui:VisualElement name="menu-control-panel" style="opacity: 0.6; width: 40%; height: 100%; background-color: rgb(10, 10, 10);">
+            <ui:VisualElement name="menu-game-title" style="width: 100%; height: 30%; background-image: url(&apos;project://database/Assets/Textures/title.png?fileID=21300000&amp;guid=951f8cbfe497e4b9db63cf8b99075d0e&amp;type=3#title&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="button-section" style="width: 100%; height: 50%; align-items: center; justify-content: center;">
+                <ui:Button text="Start" display-tooltip-when-elided="true" name="start-button" class="button" style="font-size: 80px;" />
+                <ui:Button text="Settings" display-tooltip-when-elided="true" name="settings-button" class="button" style="font-size: 80px;" />
+                <ui:Button text="Exit" display-tooltip-when-elided="true" name="exit-button" class="button" style="font-size: 80px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

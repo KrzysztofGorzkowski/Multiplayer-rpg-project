@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="EnemyStats">
+    <Position X="10" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAkAACAAQAAAAAAAAAAAAIAABAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ScriptableObjects\EnemyStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LabyrinthStats">
+    <Position X="11.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAACAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\Scripts\ScriptableObjects\LabyrinthStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerStats">
+    <Position X="8" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EACAAECABIAAAIAAAAAAAQKBAAAAEAAYQQAgIAACgAE=</HashCode>
+      <FileName>Assets\Scripts\ScriptableObjects\PlayerStats.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

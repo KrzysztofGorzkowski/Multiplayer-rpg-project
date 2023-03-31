@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="HpBar" src="/Assets/UI Scripts/UXML Documents/Exp&amp;HP Bars/HpBar.uxml" />
+    <ui:Template name="ExpBar" src="/Assets/UI Scripts/UXML Documents/Exp&amp;HP Bars/ExpBar.uxml" />
+    <ui:VisualElement name="BarsContainer" style="position: absolute; left: 0; bottom: auto; width: 400px; height: 200px; justify-content: flex-start; top: 0;">
+        <ui:Instance template="HpBar" name="HpBar" style="width: auto; height: 60px; padding-left: 30px; padding-right: 0; padding-top: 20px; padding-bottom: 15px; flex-grow: 1;" />
+        <ui:Instance template="ExpBar" name="ExpBar" style="height: 60px; width: auto; flex-grow: 1; padding-left: 30px; padding-right: 50px; padding-top: 10px; padding-bottom: 30px; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-left-color: rgba(56, 56, 56, 255); border-right-color: rgba(56, 56, 56, 255); border-top-color: rgba(56, 56, 56, 255); border-bottom-color: rgba(56, 56, 56, 255);" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MenuUIController">
+    <Position X="6.25" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\UI\MenuUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OptionsUIController">
+    <Position X="11.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAAAAAAAAAAAAAAAIAEAYAAAAAAABAAAAAACAA=</HashCode>
+      <FileName>Assets\Scripts\UI\OptionsUIController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InventoryUIControllerv2">
+    <Position X="12.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAIIAAAAQAEAAAABAAAAAAIAAABAAAACEA=</HashCode>
+      <FileName>Assets\Scripts\UI\InventoryUIControllerv2.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HeroPanelUIControler">
+    <Position X="10.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAQEAAAIACABAAAABgAAgAAAABAAwAAIQAAAAAAACFA=</HashCode>
+      <FileName>Assets\Scripts\UI\HeroPanelUIControler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
