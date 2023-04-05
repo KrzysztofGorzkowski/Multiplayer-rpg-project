@@ -42,6 +42,7 @@ public class tezztMovement : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         //getting movement from the player
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
@@ -49,6 +50,7 @@ public class tezztMovement : NetworkBehaviour
     }
     void FixedUpdate()
     {
+        if (!IsOwner) return;
         if (IsLocalPlayer)
         {
             if (movement.x != 0 && movement.y != 0)   //limit the speed to 70% when the player is moving diagonally
