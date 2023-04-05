@@ -45,8 +45,10 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (hits[i].collider != null)
                 {
+                    Debug.Log("Enemy looking for a player");
                     if (hits[i].collider.transform.CompareTag("Player") || hits[i].collider.transform.CompareTag("PlayerWand"))
                     {
+                        Debug.Log("Enemy see Player");
                         seePlayer = true;
                     }
                 }

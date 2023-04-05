@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
-  - Enemy
   - PlayerWand
   - KeysCollector
+  - Undefined
+  - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
