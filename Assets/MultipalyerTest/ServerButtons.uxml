@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="align-items: flex-end;">
+        <ui:Button text="Server" display-tooltip-when-elided="true" name="serverButton" style="width: 500px; height: 80px; font-size: 40px; -unity-font-style: bold;" />
+        <ui:Button text="Host" display-tooltip-when-elided="true" name="hostButton" style="width: 500px; height: 80px; font-size: 40px; -unity-font-style: bold;" />
+        <ui:Button text="Client" display-tooltip-when-elided="true" name="clientButton" style="width: 500px; height: 80px; font-size: 40px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>
