@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
     public GameObject firePoint;
 
@@ -52,8 +53,8 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-
-        if(movement.x!=0 && movement.y != 0)   //limit the speed to 70% when the player is moving diagonally
+        if (!IsOwner) return;
+        if (movement.x!=0 && movement.y != 0)   //limit the speed to 70% when the player is moving diagonally
         {
             _moveLimiter = 0.7f;
         }

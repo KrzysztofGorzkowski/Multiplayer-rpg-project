@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerCam : MonoBehaviour
+public class PlayerCam : NetworkBehaviour
 {
 
     [SerializeField] Transform target;
@@ -15,7 +16,7 @@ public class PlayerCam : MonoBehaviour
         this.transform.position = this.transform.position + new Vector3(0f, 0f, -10f);
     }
 
-    public void SetTarget(GameObject target)
+    public void SetTarget(NetworkObject target)
     {
         this.target = target.transform;   //get the player object as target
     }

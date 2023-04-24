@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class FirePoint : MonoBehaviour
+public class FirePoint : NetworkBehaviour
 {
     public Rigidbody2D rb;
     private Vector2 _mousePos;

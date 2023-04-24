@@ -59,7 +59,7 @@ public class Labyrinth
         _tiles[_finishPos.x, _finishPos.y] = (int)LabyrinthObject.Type.LABYRINTH_END;   //set the starting position as LABYRINTH_END
         _labyrinthGraph = new LabyrinthGraph(_startPos, _tiles);                        //creating a labyrinth graph
 
-        _labyrinthGraph.SpawnObject(_minumumDistanceBetweenEnemies, LabyrinthObject.Type.ENEMY);    //spawn enemies
+        //_labyrinthGraph.SpawnObject(_minumumDistanceBetweenEnemies, LabyrinthObject.Type.ENEMY);    //spawn enemies
         _labyrinthGraph.SpawnObject(_minumumDistanceBetweenKeys, LabyrinthObject.Type.KEYS);        //spawn keys
 
         LoadTileMap();

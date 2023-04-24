@@ -35,9 +35,11 @@ public class ServerButtonsBehaviour : MonoBehaviour
     void HostButtonClicked()
     {
         NetworkManager.Singleton.StartHost();
+        GameManager.LoadPlayer();
     }
     void ClientButtonClicked()
     {
         NetworkManager.Singleton.StartClient();
+        GameManager.LoadPlayer();
     }
 }
