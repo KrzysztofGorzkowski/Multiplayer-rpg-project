@@ -192,6 +192,11 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 1039175017943559132, guid: 0b6b8d9b0f1e0cc45a179b09132593d3, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -285,7 +290,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1308335109
 AudioListener:
   m_ObjectHideFlags: 0
@@ -361,7 +366,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1392907851}
-  - component: {fileID: 1392907850}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -369,18 +373,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1392907850
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392907849}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e153919fbe99e748891eccf2c17c13d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1392907851
 Transform:
   m_ObjectHideFlags: 0

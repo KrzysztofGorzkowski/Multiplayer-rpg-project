@@ -13,7 +13,7 @@ public class FirePoint : NetworkBehaviour
 
     private void Start()
     {
-        cam = GameManager.GetCamera().GetComponent<Camera>();  //getting camera
+        cam = GameManager_OLD.GetCamera().GetComponent<Camera>();  //getting camera !!wazne
     }
 
     // Update is called once per frame

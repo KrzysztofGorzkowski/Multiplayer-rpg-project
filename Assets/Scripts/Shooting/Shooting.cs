@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
     private float _bulletForce = 3f;
     public Transform firePoint;
     public GameObject bulletPrefab;
-    public Animator animator;
+    //public Animator animator;
 
     public float _fireRate = 0.5F;
     private float _nextFire = 0.0F;
@@ -20,7 +20,7 @@ public class Shooting : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && Time.time > _nextFire && Time.timeScale != 0f)
         {
             _nextFire = Time.time + _fireRate;
-            animator.SetTrigger("Shot");
+            //animator.SetTrigger("Shot");
         }
     }
 

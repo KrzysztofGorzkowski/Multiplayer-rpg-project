@@ -9,7 +9,8 @@ public class PlayerMovement : NetworkBehaviour
     public GameObject firePoint;
 
     private Rigidbody2D _rigidbody;
-    public Animator animator;
+    private static GameObject _camera;
+    //public Animator animator;
     public enum Direction
     {
         UP = 0, DOWN, LEFT, RIGHT
@@ -40,7 +41,8 @@ public class PlayerMovement : NetworkBehaviour
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+        //LoadCamera();
+        //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -68,23 +70,34 @@ public class PlayerMovement : NetworkBehaviour
         if (movement == upDirection || movement == upRightDirection || movement == upLeftDirection)
         {
             firePoint.transform.position = transform.position + upFirePoint;
-            animator.SetInteger("Direction", (int)Direction.UP);
+            //animator.SetInteger("Direction", (int)Direction.UP);
         }
         else if (movement == leftDirection)
         {
             firePoint.transform.position = transform.position + leftFirePoint;
-            animator.SetInteger("Direction", (int)Direction.LEFT);
+            //animator.SetInteger("Direction", (int)Direction.LEFT);
         }
         else if (movement == rightDirection)
         {
             firePoint.transform.position = transform.position + rightFirePoint;
-            animator.SetInteger("Direction", (int)Direction.RIGHT);
+            //animator.SetInteger("Direction", (int)Direction.RIGHT);
         }
         else if (movement == downDirection || movement == downRightDirection || movement == downLefttDirection)
         {
             firePoint.transform.position = transform.position + downFirePoint;
-            animator.SetInteger("Direction", (int)Direction.DOWN);
+            //animator.SetInteger("Direction", (int)Direction.DOWN);
         }
 
+    }
+    private void LoadCamera() //the function of creating a camera to track the player
+    {
+        GameObject cameraPrefab = Resources.Load("Camera") as GameObject;
+        _camera = GameObject.Instantiate<GameObject>(cameraPrefab);
+        _camera.GetComponent<PlayerCam>().SetTarget(NetworkObject.transform);
+    }
+
+    public GameObject GetCamera()
+    {
+        return _camera;
     }
 }
