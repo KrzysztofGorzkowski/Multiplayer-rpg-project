@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5738699841145842394}
   - component: {fileID: 4188164501674992721}
   - component: {fileID: 6310592553693681555}
+  - component: {fileID: -2505178662724851785}
   m_Layer: 0
   m_Name: FinishCheck
   m_TagString: Untagged
@@ -28,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.4703, y: 4.0233126, z: -5963.0737}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,3 +62,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc5e7582a36d8c48afa808f93547065, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2505178662724851785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275536693864308155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerMovement : NetworkBehaviour
 {
+    public Transform spawnObject;
     public GameObject firePoint;
 
     private Rigidbody2D _rigidbody;
@@ -40,14 +41,26 @@ public class PlayerMovement : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!IsOwner) return;
         _rigidbody = GetComponent<Rigidbody2D>();
         //LoadCamera();
         //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+
+        var startPos = GameManager.GetLabirynth().GetStartPos();
+        NetworkObject.transform.position = new Vector3(startPos.x + 1.05f, startPos.y + 1.25f, -2f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (!IsOwner) return;
+            Transform var = Instantiate(spawnObject);
+
+            var.transform.SetPositionAndRotation(new Vector3(GameManager.GetLabirynth().GetStartPos().x, GameManager.GetLabirynth().GetStartPos().y, 0), new Quaternion());
+            var.GetComponent<NetworkObject>().Spawn(true);
+        }
         //getting movement from the player
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");

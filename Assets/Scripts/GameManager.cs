@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour
 {
+    private static Labyrinth _labyrinth;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +18,14 @@ public class GameManager : NetworkBehaviour
         
     }
 
-    void LoadLabirynth()
+    public static void LoadLabirynth()
     {
-
+        new LabyrinthDatabase();
+        LabyrinthDatabase.ResetStats();
+        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize());
+    }
+    public static Labyrinth GetLabirynth()
+    {
+        return _labyrinth;
     }
 }
