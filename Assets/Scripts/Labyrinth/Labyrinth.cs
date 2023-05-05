@@ -228,7 +228,7 @@ public class Labyrinth
         }
         
         _labyrinthPrefab.transform.GetChild(0).gameObject.GetComponent<Tilemap>().SetTiles(positions, tileArray);  //sett the appropriate tileBase in the appropriate positions for the tilemap
-        _labyrinthPrefab.GetComponent<NetworkObject>().Spawn(true);
+        //_labyrinthPrefab.GetComponent<NetworkObject>().Spawn(true);
     }
 
     private void CreateFinishCheck() //creating an object that will check if the player has picked up all the keys after reaching the finish

@@ -37,7 +37,7 @@ public class ServerButtonsBehaviour : MonoBehaviour
     void HostButtonClicked()
     {
         NetworkManager.Singleton.StartHost();
-        //GameManager.LoadLabirynth();
+        GameManager.LoadLabirynth();
         //GameManager.LoadPlayer();
     }
     void ClientButtonClicked()

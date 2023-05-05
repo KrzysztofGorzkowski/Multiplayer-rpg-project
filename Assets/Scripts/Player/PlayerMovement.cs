@@ -47,7 +47,8 @@ public class PlayerMovement : NetworkBehaviour
         //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
 
         var startPos = GameManager.GetLabirynth().GetStartPos();
-        NetworkObject.transform.position = new Vector3(startPos.x + 1.05f, startPos.y + 1.25f, -2f);
+        transform.position = new Vector3(0, 0, 0);
+        //transform.position = new Vector3(startPos.x + 1.05f, startPos.y + 1.25f, -2f);
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class PlayerMovement : NetworkBehaviour
             if (!IsOwner) return;
             Transform var = Instantiate(spawnObject);
 
-            var.transform.SetPositionAndRotation(new Vector3(GameManager.GetLabirynth().GetStartPos().x, GameManager.GetLabirynth().GetStartPos().y, 0), new Quaternion());
+            var.transform.SetPositionAndRotation(new Vector3(0, 0, 0), new Quaternion());
             var.GetComponent<NetworkObject>().Spawn(true);
         }
         //getting movement from the player
