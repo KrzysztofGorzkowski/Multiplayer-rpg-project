@@ -46,7 +46,7 @@ public class PlayerMovement : NetworkBehaviour
         //LoadCamera();
         //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
 
-        var startPos = GameManager.GetLabirynth().GetStartPos();
+        //var startPos = GameManager.GetLabirynth().GetStartPos();
         transform.position = new Vector3(0, 0, 0);
         //transform.position = new Vector3(startPos.x + 1.05f, startPos.y + 1.25f, -2f);
     }

@@ -7,6 +7,7 @@ public class ServerButtonsBehaviour : MonoBehaviour
 {
     //main menu panel and buttons
     public UIDocument serverPanel;
+    public Transform spawnObject;
 
 
     void OnEnable()
@@ -31,18 +32,21 @@ public class ServerButtonsBehaviour : MonoBehaviour
     void ServerButtonClicked()
     {
         NetworkManager.Singleton.StartServer();
-        GameManager.LoadLabirynth();
+        Transform var = Instantiate(spawnObject);
+        //GameManager.LoadLabirynthServerRpc();
 
     }
     void HostButtonClicked()
     {
         NetworkManager.Singleton.StartHost();
-        GameManager.LoadLabirynth();
+        Transform var = Instantiate(spawnObject);
+        //GameManager.LoadLabirynthServerRpc();
         //GameManager.LoadPlayer();
     }
     void ClientButtonClicked()
     {
         NetworkManager.Singleton.StartClient();
+        Transform var = Instantiate(spawnObject);
         //GameManager.LoadLabirynth();
         //GameManager.LoadPlayer();
     }

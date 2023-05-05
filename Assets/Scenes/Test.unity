@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverPanel: {fileID: 1760802096}
+  spawnObject: {fileID: 8016696164786454110, guid: 1506d906bfee83f49a07f307d8bf6618, type: 3}
 --- !u!4 &1119427162
 Transform:
   m_ObjectHideFlags: 0

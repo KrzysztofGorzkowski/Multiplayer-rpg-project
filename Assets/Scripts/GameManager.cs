@@ -19,11 +19,11 @@ public class GameManager : MonoBehaviour
     }
 
     [ServerRpc]
-    public static void LoadLabirynth()
+    public static void LoadLabirynthServerRpc()
     {
-        new LabyrinthDatabase();
+        /*new LabyrinthDatabase();
         LabyrinthDatabase.ResetStats();
-        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize());
+        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize());*/
         /*
         GameObject objectToSpawn1 = GameObject.Find("Labyrinth");
         GameObject objectToSpawn2 = GameObject.Find("Tilemap");
