@@ -7,6 +7,7 @@ using Unity.Netcode;
 
 public class GameManager_OLD : NetworkBehaviour
 {
+
     //private const int LABYRINTH_SIZE = 9;  //the size of the labyrinth corresponding to the length of the side of the square labyrinth
     private static Labyrinth _labyrinth;
     private static Player _player;
@@ -20,23 +21,23 @@ public class GameManager_OLD : NetworkBehaviour
         isFinishActive = false;
         new LabyrinthDatabase();
         LabyrinthDatabase.ResetStats();
-        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize()); //cutting the labyrinth and creating a labyrinth graph
+        //_labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize()); //cutting the labyrinth and creating a labyrinth graph
                                               //creating a camera to track the player
 
     }
 
     void Update()
     {
-        if ((!isFinishActive)&&(Labyrinth.numberOfKeys==Labyrinth.numberOfPickedUpKeys))
+        /*if ((!isFinishActive)&&(Labyrinth.numberOfKeys==Labyrinth.numberOfPickedUpKeys))
         {
             isFinishActive = true;
             _labyrinth.SwapTeleportEndTile();
-        }
+        }*/
     }
 
     public static void LoadPlayer()
     {
-        _player = new Player(_labyrinth.GetStartPos());             //creating a player
+        //_player = new Player(_labyrinth.GetStartPos());             //creating a player
         LoadCamera();
     }
 

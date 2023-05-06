@@ -47,7 +47,7 @@ public class PlayerMovement : NetworkBehaviour
         //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
 
         //var startPos = GameManager.GetLabirynth().GetStartPos();
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = new Vector3(-3, -3, 0);
         //transform.position = new Vector3(startPos.x + 1.05f, startPos.y + 1.25f, -2f);
     }
 
@@ -62,10 +62,10 @@ public class PlayerMovement : NetworkBehaviour
             var.transform.SetPositionAndRotation(new Vector3(0, 0, 0), new Quaternion());
             var.GetComponent<NetworkObject>().Spawn(true);
         }
+
         //getting movement from the player
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        //Debug.Log(movement);
     }
     void FixedUpdate()
     {
@@ -103,15 +103,15 @@ public class PlayerMovement : NetworkBehaviour
         }
 
     }
-    private void LoadCamera() //the function of creating a camera to track the player
+    /*private void LoadCamera() //the function of creating a camera to track the player
     {
         GameObject cameraPrefab = Resources.Load("Camera") as GameObject;
         _camera = GameObject.Instantiate<GameObject>(cameraPrefab);
         _camera.GetComponent<PlayerCam>().SetTarget(NetworkObject.transform);
-    }
+    }*/
 
-    public GameObject GetCamera()
+    /*public GameObject GetCamera()
     {
         return _camera;
-    }
+    }*/
 }

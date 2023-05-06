@@ -11,7 +11,7 @@ public class AnimationEventsHandler : MonoBehaviour
     public void AppearingFinished()
     {
         GameManager_OLD.GetPlayer().mobilitySwitch(); //unlocks player movement
-        GameManager_OLD.GetLabirynth().SwapTeleportStartTile(); //change start teleport's tile into OFF mode
+        //GameManager_OLD.GetLabirynth().SwapTeleportStartTile(); //change start teleport's tile into OFF mode
     }
 
     //called during shooting animations, when the real shot has to be done

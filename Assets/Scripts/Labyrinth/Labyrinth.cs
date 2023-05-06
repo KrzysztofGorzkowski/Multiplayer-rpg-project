@@ -7,7 +7,7 @@ using Unity.Netcode;
 
 public class Labyrinth
 {
-    private System.Random _rnd = new System.Random();
+    /*private System.Random _rnd = new System.Random();
     private int[,] _tiles;                              //two-dimensional tiles array
     private int _maxLength;                             //is used to determine the farthest position of the end of the labyrinth
     private Vector2Int _startPos;                       //start position of the labyrinth
@@ -262,5 +262,7 @@ public class Labyrinth
         TileBase endOn = Resources.Load("TeleportFinishON") as TileBase;
         _labyrinthPrefab.transform.GetChild(0).gameObject.GetComponent<Tilemap>().SwapTile(endOff, endOn);
     }
+
+    */
 
 }
