@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2889285318291147836}
   - component: {fileID: 3784402173636187481}
   - component: {fileID: 2311850140273322574}
+  - component: {fileID: 3811138890007181758}
   m_Layer: 6
   m_Name: FirePoint
   m_TagString: PlayerWand
@@ -101,6 +102,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &3811138890007181758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1458724417670602144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23aa5a5ffd7f1534b9093cea6a48c6d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  cam: {fileID: 6700607841267534904}
 --- !u!1 &2318377198057580463
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,6 +525,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2834256836189842353, guid: 0b6b8d9b0f1e0cc45a179b09132593d3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0b6b8d9b0f1e0cc45a179b09132593d3, type: 3}
+--- !u!20 &6700607841267534904 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 1039175017943559135, guid: 0b6b8d9b0f1e0cc45a179b09132593d3, type: 3}
+  m_PrefabInstance: {fileID: 5951141288916985831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6700607841267534905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1039175017943559134, guid: 0b6b8d9b0f1e0cc45a179b09132593d3, type: 3}

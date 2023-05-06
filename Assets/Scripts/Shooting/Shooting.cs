@@ -21,12 +21,13 @@ public class Shooting : MonoBehaviour
         {
             _nextFire = Time.time + _fireRate;
             //animator.SetTrigger("Shot");
+            this.Shoot();
         }
     }
 
     public void Shoot()
     {
-        
+        Debug.Log(firePoint.rotation);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);  //spawn bulet
         bullet.GetComponent<Bullet>().SetDamage(PlayerDatabase.Damage()); 
         Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), transform.GetChild(0).GetComponent<Collider2D>());    //ignoring player collisions
