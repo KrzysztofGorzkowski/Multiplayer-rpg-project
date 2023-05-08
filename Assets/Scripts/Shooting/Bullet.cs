@@ -21,7 +21,7 @@ public class Bullet : NetworkBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerWand")) return;
+        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerWand")) return; //ignore ALL players colliders (do not destroy projectile when hit a player)
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         //animator.Play("BulletExplosion");
         DestoryServerRpc();

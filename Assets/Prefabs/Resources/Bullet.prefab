@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 5941476385288319603}
   - component: {fileID: 1102431292462976004}
   - component: {fileID: 8548532860133349371}
-  - component: {fileID: 563161859623514955}
-  - component: {fileID: 3788336850229093203}
-  m_Layer: 0
+  - component: {fileID: -8217260677638935187}
+  - component: {fileID: -231631365402202337}
+  m_Layer: 7
   m_Name: Bullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &563161859623514955
+--- !u!114 &-8217260677638935187
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,14 +186,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1058458740049823082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: df2868252ab5c4d1da357e8f11f1b524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 0
-  SyncRotAngleX: 0
-  SyncRotAngleY: 0
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
   SyncRotAngleZ: 0
   SyncScaleX: 1
   SyncScaleY: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
   ScaleThreshold: 0.01
   InLocalSpace: 0
   Interpolate: 1
---- !u!114 &3788336850229093203
+--- !u!114 &-231631365402202337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -7,13 +7,22 @@ using UnityEngine;
 
 public class Shooting : NetworkBehaviour
 {
-    private float _bulletForce = 3f;
+    private readonly NetworkVariable<float> _bulletForce = new (writePerm: NetworkVariableWritePermission.Owner);
     public Transform firePoint;
     public GameObject bulletPrefab;
     //public Animator animator;
 
     public float _fireRate = 0.5F;
     private float _nextFire = 0.0F;
+
+    public override void OnNetworkSpawn()
+    {
+        if(IsOwner)
+        {
+            _bulletForce.Value = 3f;
+        }
+        
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,22 +31,22 @@ public class Shooting : NetworkBehaviour
         {
             _nextFire = Time.time + _fireRate;
             //animator.SetTrigger("Shot");
-            this.ShootServerRpc();
+            this.ShootServerRpc(firePoint.up);
         }
     }
     [ServerRpc]
-    public void ShootServerRpc()
+    public void ShootServerRpc(Vector2 y)
     {
-
-        Debug.Log(firePoint.rotation);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);  //spawn bulet
         bullet.GetComponent<NetworkObject>().Spawn(true);
         bullet.GetComponent<Bullet>().SetDamage(PlayerDatabase.Damage()); //????? czy to dobrze??
+        Physics2D.IgnoreLayerCollision(7,6);    //ignoring ALL players collisions using LAYERS (player have Layer 6 named "Action" bullet has layer "Bullet" (7)
         //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), transform.GetChild(0).GetComponent<Collider2D>());    //ignoring player collisions
         //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), firePoint.GetComponent<Collider2D>());                //ignoring firePoint collisions
         //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), NetworkManager.Singleton.LocalClient.PlayerObject.transform.GetChild(0).GetComponent<Collider2D>());    //ignoring player collisions
         //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), NetworkManager.Singleton.LocalClient.PlayerObject.transform.GetChild(2).GetComponent<Collider2D>());                //ignoring firePoint collisions
         Rigidbody2D rigidbody =  bullet.GetComponent<Rigidbody2D>();
-        rigidbody.AddForce(firePoint.up * _bulletForce, ForceMode2D.Impulse);
+        Debug.Log("Y: " + y);
+        rigidbody.AddForce(y * _bulletForce.Value, ForceMode2D.Impulse);
     }
 }

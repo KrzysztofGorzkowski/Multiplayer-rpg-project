@@ -17,7 +17,7 @@ public class AnimationEventsHandler : MonoBehaviour
     //called during shooting animations, when the real shot has to be done
     public void Shoot()
     {
-        GameManager_OLD.GetPlayer().getPlayerObject().GetComponent<Shooting>().ShootServerRpc();
+        //GameManager_OLD.GetPlayer().getPlayerObject().GetComponent<Shooting>().Shoot();
     }
 
     //called after disappearing animation when the level is finished
