@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : NetworkBehaviour
 {
     //public Rigidbody2D rigidbody;
-    public Animator animator;
+    //public Animator animator;
     private int _damage;
 
     public void SetDamage(int damage)      //set bullet damage
@@ -20,13 +21,16 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerWand")) return;
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-        animator.Play("BulletExplosion");
+        //animator.Play("BulletExplosion");
+        DestoryServerRpc();
     }
-
-    private void End()
+    [ServerRpc(RequireOwnership = false)]
+    private void DestoryServerRpc()
     {
-        Destroy(gameObject);
+        GetComponent<NetworkObject>().Despawn();   
+        //Destroy(gameObject);
     }
 
 }
