@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
-public class ServerButtonsBehaviour : MonoBehaviour
+public class ServerButtonsBehaviour : NetworkBehaviour
 {
     //main menu panel and buttons
     public UIDocument serverPanel;
     public Transform spawnObject;
+
+    private NetworkVariable<int> numberOfPlayers = new NetworkVariable<int>();
 
 
     void OnEnable()
@@ -26,6 +28,12 @@ public class ServerButtonsBehaviour : MonoBehaviour
 
         var clientButton = _serverPanel.Q<Button>("clientButton");
         clientButton.clicked += ClientButtonClicked;
+
+        var connectToServer1Button = _serverPanel.Q<Button>("connectToServer1");
+        serverButton.clicked += ConnectToServer1Clicked;
+
+        var connectToServer2Button = _serverPanel.Q<Button>("connectToServer2");
+        serverButton.clicked += ConnectToServer2Clicked;
         #endregion
     }
 
@@ -49,5 +57,30 @@ public class ServerButtonsBehaviour : MonoBehaviour
         Transform var = Instantiate(spawnObject);
         //GameManager.LoadLabirynth();
         //GameManager.LoadPlayer();
+    }
+
+    void ConnectToServer1Clicked()
+    {
+
+    }
+
+
+    void ConnectToServer2Clicked()
+    {
+
+    }
+
+
+
+    private void Update()
+    {
+        serverPanel.rootVisualElement.Q<Label>("numberOfPlayers").text = numberOfPlayers.Value.ToString();
+
+        if (!IsServer)
+        {
+            return;
+        }
+
+        numberOfPlayers.Value = NetworkManager.Singleton.ConnectedClients.Count;
     }
 }
