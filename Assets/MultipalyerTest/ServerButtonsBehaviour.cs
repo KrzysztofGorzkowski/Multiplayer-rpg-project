@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UNET;
+using Unity.Netcode.Transports.UTP;
+using Unity.Networking;
+
 public class ServerButtonsBehaviour : NetworkBehaviour
 {
     //main menu panel and buttons
@@ -30,10 +34,10 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         clientButton.clicked += ClientButtonClicked;
 
         var connectToServer1Button = _serverPanel.Q<Button>("connectToServer1");
-        serverButton.clicked += ConnectToServer1Clicked;
+        connectToServer1Button.clicked += ConnectToServer1Clicked;
 
         var connectToServer2Button = _serverPanel.Q<Button>("connectToServer2");
-        serverButton.clicked += ConnectToServer2Clicked;
+        connectToServer2Button.clicked += ConnectToServer2Clicked;
         #endregion
     }
 
@@ -61,13 +65,17 @@ public class ServerButtonsBehaviour : NetworkBehaviour
 
     void ConnectToServer1Clicked()
     {
-
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        Transform var = Instantiate(spawnObject);
     }
 
 
     void ConnectToServer2Clicked()
     {
-
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        Transform var = Instantiate(spawnObject);
     }
 
 
