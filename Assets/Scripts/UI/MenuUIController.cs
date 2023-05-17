@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 //Stript that handles Menu UI logic in MainMenu Scene 
-public class MenuUIController : MonoBehaviour
+public class MenuUIController : NetworkBehaviour
 {
     //main menu panel and buttons
     public UIDocument mainMenuPanel;
@@ -25,17 +26,20 @@ public class MenuUIController : MonoBehaviour
         settings.visible = false;
 
         #region buttonEvents
-        var startButton = mainMenu.Q<Button>("start-button");
-        startButton.clicked += PlayGame;
+        var _joinGamebutton = mainMenu.Q<Button>("joinGameButton");
+        _joinGamebutton.clicked += JoinGame;
 
-         var settingsButton = mainMenu.Q<Button>("settings-button");
-        settingsButton.clicked += SwitchPanels;
+        var _startServerButton = mainMenu.Q<Button>("startServerButton");
+        _startServerButton.clicked += StartServer;
 
-        var exitButton = mainMenu.Q<Button>("exit-button");
-        exitButton.clicked += Application.Quit;
+        var _settingsButton = mainMenu.Q<Button>("settingsButton");
+        _settingsButton.clicked += SwitchPanels;
 
-        var backButton = settings.Q<Button>("back-button");
-        backButton.clicked += SwitchPanels;
+        var _exitButton = mainMenu.Q<Button>("exitButton");
+        _exitButton.clicked += Application.Quit;
+
+        var _backButton = settings.Q<Button>("back-button");
+        _backButton.clicked += SwitchPanels;
         #endregion
     }
 
@@ -48,17 +52,20 @@ public class MenuUIController : MonoBehaviour
             return;
 
         #region buttonEvents
-        var startButton = mainMenu.Q<Button>("start-button");
-        startButton.clicked -= PlayGame;
+        var _joinGamebutton = mainMenu.Q<Button>("start-button");
+        _joinGamebutton.clicked -= JoinGame;
 
-        var settingsButton = mainMenu.Q<Button>("settings-button");
-        settingsButton.clicked -= SwitchPanels;
+        var _startServerButton = mainMenu.Q<Button>("startServerbutton");
+        _startServerButton.clicked -= StartServer;
 
-        var exitButton = mainMenu.Q<Button>("exit-button");
-        exitButton.clicked -= Application.Quit;
+        var _settingsButton = mainMenu.Q<Button>("settings-button");
+        _settingsButton.clicked -= SwitchPanels;
 
-        var backButton = settings.Q<Button>("back-button");
-        backButton.clicked -= SwitchPanels;
+        var _exitButton = mainMenu.Q<Button>("exit-button");
+        _exitButton.clicked -= Application.Quit;
+
+        var _backButton = settings.Q<Button>("back-button");
+        _backButton.clicked -= SwitchPanels;
         #endregion
     }
 
@@ -79,12 +86,20 @@ public class MenuUIController : MonoBehaviour
         settings.visible = !settings.visible;
     }
 
-    void PlayGame()
+    void StartServer()
     {
-        new PlayerDatabase();
-        PlayerDatabase.ResetStats();
-        new LabyrinthDatabase();
-        LabyrinthDatabase.ResetStats();
-        SceneManager.LoadScene("LabyrinthScene");
+        SceneManager.LoadScene("Test");
+        NetworkManager.Singleton.StartServer();
+    }
+
+    void JoinGame()
+    {
+        //new PlayerDatabase();
+        //PlayerDatabase.ResetStats();
+        //new LabyrinthDatabase();
+        //LabyrinthDatabase.ResetStats();
+        SceneManager.LoadScene("Test");
+        //SceneManager.sceneLoaded += NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.StartClient();
     }
 }
