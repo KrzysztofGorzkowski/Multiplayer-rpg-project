@@ -26,11 +26,17 @@ public class MenuUIController : NetworkBehaviour
         settings.visible = false;
 
         #region buttonEvents
-        var _joinGamebutton = mainMenu.Q<Button>("joinGameButton");
-        _joinGamebutton.clicked += JoinGame;
+        var _joinServer1Button = mainMenu.Q<Button>("joinServer1Button");
+        _joinServer1Button.clicked += JoinServer1;
 
-        var _startServerButton = mainMenu.Q<Button>("startServerButton");
-        _startServerButton.clicked += StartServer;
+        var _joinServer2Button = mainMenu.Q<Button>("joinServer2Button");
+        _joinServer2Button.clicked += JoinServer2;
+
+        var _startServer1Button = mainMenu.Q<Button>("startServer1Button");
+        _startServer1Button.clicked += StartServer1;
+
+        var _startServer2Button = mainMenu.Q<Button>("startServer2Button");
+        _startServer2Button.clicked += StartServer2;
 
         var _settingsButton = mainMenu.Q<Button>("settingsButton");
         _settingsButton.clicked += SwitchPanels;
@@ -52,11 +58,17 @@ public class MenuUIController : NetworkBehaviour
             return;
 
         #region buttonEvents
-        var _joinGamebutton = mainMenu.Q<Button>("start-button");
-        _joinGamebutton.clicked -= JoinGame;
+        var _joinServer1Button = mainMenu.Q<Button>("joinServer1Button");
+        _joinServer1Button.clicked -= JoinServer1;
 
-        var _startServerButton = mainMenu.Q<Button>("startServerbutton");
-        _startServerButton.clicked -= StartServer;
+        var _joinServer2Button = mainMenu.Q<Button>("joinServer2Button");
+        _joinServer2Button.clicked -= JoinServer2;
+
+        var _startServer1Button = mainMenu.Q<Button>("startServer1Button");
+        _startServer1Button.clicked -= StartServer1;
+
+        var _startServer2Button = mainMenu.Q<Button>("startServer2Button");
+        _startServer2Button.clicked -= StartServer2;
 
         var _settingsButton = mainMenu.Q<Button>("settings-button");
         _settingsButton.clicked -= SwitchPanels;
@@ -86,20 +98,50 @@ public class MenuUIController : NetworkBehaviour
         settings.visible = !settings.visible;
     }
 
-    void StartServer()
+    void StartServer1()
     {
-        SceneManager.LoadScene("Test");
+        SceneManager.LoadScene("Scene1");
+        SceneManager.sceneLoaded += StartingServer;
+    }
+
+    void StartServer2()
+    {
+        SceneManager.LoadScene("Scene2");
+        SceneManager.sceneLoaded += StartingServer;
+        //NetworkManager.Singleton.StartServer();
+    }
+
+    public void StartingServer(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
         NetworkManager.Singleton.StartServer();
     }
 
-    void JoinGame()
+    void JoinServer1()
     {
         //new PlayerDatabase();
         //PlayerDatabase.ResetStats();
         //new LabyrinthDatabase();
         //LabyrinthDatabase.ResetStats();
-        SceneManager.LoadScene("Test");
-        //SceneManager.sceneLoaded += NetworkManager.Singleton.StartClient();
+        SceneManager.LoadScene("Scene1");
+        SceneManager.sceneLoaded += JoiningServer;
+    }
+
+    void JoinServer2()
+    {
+        //new PlayerDatabase();
+        //PlayerDatabase.ResetStats();
+        //new LabyrinthDatabase();
+        //LabyrinthDatabase.ResetStats();
+        SceneManager.LoadScene("Scene2");
+        SceneManager.sceneLoaded += JoiningServer;
+    }
+
+    public void JoiningServer(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
         NetworkManager.Singleton.StartClient();
     }
 }

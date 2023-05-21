@@ -1,11 +1,11 @@
 .button {
-    font-size: 60px;
+    font-size: 55px;
     width: 50%;
     -unity-text-align: middle-center;
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-top-left-radius: 11px;
     border-bottom-left-radius: 11px;
     border-top-right-radius: 11px;

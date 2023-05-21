@@ -6,6 +6,7 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UNET;
 using Unity.Netcode.Transports.UTP;
 using Unity.Networking;
+using UnityEngine.SceneManagement;
 
 public class ServerButtonsBehaviour : NetworkBehaviour
 {
@@ -24,15 +25,6 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         var _serverPanel = serverPanel.rootVisualElement;
 
         #region buttonEvents
-        var serverButton = _serverPanel.Q<Button>("serverButton");
-        serverButton.clicked += ServerButtonClicked;
-
-        var hostButton = _serverPanel.Q<Button>("hostButton");
-        hostButton.clicked += HostButtonClicked;
-
-        var clientButton = _serverPanel.Q<Button>("clientButton");
-        clientButton.clicked += ClientButtonClicked;
-
         var connectToServer1Button = _serverPanel.Q<Button>("connectToServer1");
         connectToServer1Button.clicked += ConnectToServer1Clicked;
 
@@ -41,48 +33,47 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         #endregion
     }
 
-    void ServerButtonClicked()
-    {
-        NetworkManager.Singleton.StartServer();
-        Transform var = Instantiate(spawnObject);
-        //GameManager.LoadLabirynthServerRpc();
 
-    }
-    void HostButtonClicked()
-    {
-        NetworkManager.Singleton.StartHost();
-        Transform var = Instantiate(spawnObject);
-        //GameManager.LoadLabirynthServerRpc();
-        //GameManager.LoadPlayer();
-    }
-    void ClientButtonClicked()
-    {
-        NetworkManager.Singleton.StartClient();
-        Transform var = Instantiate(spawnObject);
-        //GameManager.LoadLabirynth();
-        //GameManager.LoadPlayer();
-    }
 
     void ConnectToServer1Clicked()
     {
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
-        NetworkManager.Singleton.StartClient();
-        Transform var = Instantiate(spawnObject);
+        NetworkManager.Singleton.Shutdown();
+        //NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        //NetworkManager.Singleton.StartClient();
+        SceneManager.LoadScene("Scene1");
+        //SceneManager.sceneLoaded += JoiningServer;
+        //Transform var = Instantiate(spawnObject);
     }
 
 
     void ConnectToServer2Clicked()
     {
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
-        NetworkManager.Singleton.StartClient();
-        Transform var = Instantiate(spawnObject);
+        //NetworkManager.Singleton.SceneManager.
+        NetworkManager.Singleton.Shutdown();
+        //NetworkManager.Singleton.OnClientDisconnectCallback += Method;
+        //NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        //NetworkManager.Singleton.StartClient();
+        SceneManager.LoadScene("Scene2");
+        //SceneManager.sceneLoaded += JoiningServer;
+        //Transform var = Instantiate(spawnObject);
     }
 
+    public void Method(ulong temp)
+    {
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+    }
 
+    public void JoiningServer(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+        NetworkManager.Singleton.StartClient();
+    }
 
     private void Update()
     {
-        serverPanel.rootVisualElement.Q<Label>("numberOfPlayers").text = numberOfPlayers.Value.ToString();
+        serverPanel.rootVisualElement.Q<Label>("numberOfPlayers").text = "Connected Players: " + numberOfPlayers.Value.ToString();
 
         if (!IsServer)
         {
