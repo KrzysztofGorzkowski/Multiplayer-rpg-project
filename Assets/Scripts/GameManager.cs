@@ -21,10 +21,11 @@ public class GameManager : MonoBehaviour
     [ServerRpc]
     public static void LoadLabirynthServerRpc()
     {
-        /*new LabyrinthDatabase();
-        LabyrinthDatabase.ResetStats();
-        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize());*/
         /*
+        new LabyrinthDatabase();
+        LabyrinthDatabase.ResetStats();
+        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize());
+        */
         GameObject objectToSpawn1 = GameObject.Find("Labyrinth");
         GameObject objectToSpawn2 = GameObject.Find("Tilemap");
         objectToSpawn1.GetComponent<NetworkObject>().Spawn(true);
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
         NetworkManager.Singleton.AddNetworkPrefab(objectToSpawn2);
         objectToSpawn2.GetComponent<NetworkObject>().Spawn(true);
         objectToSpawn2.transform.parent = objectToSpawn1.transform;
-        */
+        
     }
     public static Labyrinth GetLabirynth()
     {

@@ -103,15 +103,5 @@ public class PlayerMovement : NetworkBehaviour
         }
 
     }
-    /*private void LoadCamera() //the function of creating a camera to track the player
-    {
-        GameObject cameraPrefab = Resources.Load("Camera") as GameObject;
-        _camera = GameObject.Instantiate<GameObject>(cameraPrefab);
-        _camera.GetComponent<PlayerCam>().SetTarget(NetworkObject.transform);
-    }*/
-
-    /*public GameObject GetCamera()
-    {
-        return _camera;
-    }*/
+   
 }

@@ -16,7 +16,7 @@ public class PlayerCam : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name == "Test")
+        if(IsOwner /*SceneManager.GetActiveScene().name == "Test"*/)
         {
             //change the position of the camera
             this.transform.position = Vector3.Lerp(this.transform.position, target.position, 0.9f);

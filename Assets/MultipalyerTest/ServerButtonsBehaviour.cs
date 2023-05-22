@@ -37,39 +37,21 @@ public class ServerButtonsBehaviour : NetworkBehaviour
 
     void ConnectToServer1Clicked()
     {
-        //NetworkManager.Singleton.Shutdown();
-        //Destroy(NetworkManager.Singleton);
         NetworkManager.Singleton.Shutdown();
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
         NetworkManager.Singleton.StartClient();
-        NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
-        
+        LoadSceneServerRpc("Scene1", LoadSceneMode.Single);
         //Transform var = Instantiate(spawnObject);
     }
 
 
     void ConnectToServer2Clicked()
     {
-        //ChangeSceneServerRpc();
-        //NetworkManager.Singleton.Shutdown();
-        //Destroy(NetworkManager.Singleton);
-        //NetworkManager.Singleton.OnClientDisconnectCallback += Method;
         NetworkManager.Singleton.Shutdown();
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
-        NetworkManager.Singleton.StartClient(); 
-        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
-        //Transform var = Instantiate(spawnObject);
-    }
-
-    [ServerRpc (RequireOwnership = false)]
-    public void ChangeSceneServerRpc()
-    {
-        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
-    }
-    public void Method(ulong temp)
-    {
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
         NetworkManager.Singleton.StartClient();
+        LoadSceneServerRpc("Scene2", LoadSceneMode.Single);
+        //Transform var = Instantiate(spawnObject);
     }
 
     private void Update()
@@ -82,5 +64,11 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         }
 
         numberOfPlayers.Value = NetworkManager.Singleton.ConnectedClients.Count;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void LoadSceneServerRpc(string sceneName, LoadSceneMode mode)
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, mode);
     }
 }

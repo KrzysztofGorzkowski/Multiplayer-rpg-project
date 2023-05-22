@@ -102,9 +102,9 @@ public class MenuUIController : NetworkBehaviour
     void StartServer1()
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        //NetworkManager.Singleton.OnServerStarted +=
         NetworkManager.Singleton.StartServer();
         NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
-        //SceneManager.sceneLoaded += StartingServer;
     }
 
     void StartServer2()
@@ -112,8 +112,6 @@ public class MenuUIController : NetworkBehaviour
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
         NetworkManager.Singleton.StartServer();
         NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
-        
-        //SceneManager.sceneLoaded += StartingServer;
     }
 
     public void StartingServer(Scene scene, LoadSceneMode mode)
@@ -131,9 +129,8 @@ public class MenuUIController : NetworkBehaviour
         //LabyrinthDatabase.ResetStats();
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
         NetworkManager.Singleton.StartClient();
-        NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
-        //SceneManager.sceneLoaded += JoiningServer;
-        
+        LoadSceneServerRpc("Scene1", LoadSceneMode.Single);
+
     }
 
     void JoinServer2()
@@ -144,15 +141,12 @@ public class MenuUIController : NetworkBehaviour
         //LabyrinthDatabase.ResetStats();
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
         NetworkManager.Singleton.StartClient();
-        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
-        //SceneManager.sceneLoaded += JoiningServer;
+        LoadSceneServerRpc("Scene2", LoadSceneMode.Single);
         
     }
-
-    public void JoiningServer(Scene scene, LoadSceneMode mode)
+    [ServerRpc (RequireOwnership = false)]
+    public void LoadSceneServerRpc(string sceneName, LoadSceneMode mode)
     {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-        NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, mode);
     }
 }
