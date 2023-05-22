@@ -114,12 +114,6 @@ public class MenuUIController : NetworkBehaviour
         NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
     }
 
-    public void StartingServer(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
-        NetworkManager.Singleton.StartServer();
-    }
 
     void JoinServer1()
     {

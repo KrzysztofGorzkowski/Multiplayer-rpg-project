@@ -12,13 +12,11 @@ public class ServerButtonsBehaviour : NetworkBehaviour
 {
     //main menu panel and buttons
     public UIDocument serverPanel;
-    public Transform spawnObject;
-
     private NetworkVariable<int> numberOfPlayers = new NetworkVariable<int>();
-
 
     void OnEnable()
     {
+
         if (serverPanel == null)
             return;
 
@@ -32,26 +30,37 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         connectToServer2Button.clicked += ConnectToServer2Clicked;
         #endregion
     }
+    
 
-
+    public override void OnNetworkSpawn()
+    {
+        
+    }
 
     void ConnectToServer1Clicked()
     {
         NetworkManager.Singleton.Shutdown();
+        //StartCoroutine(WaitForShutdown());
+        Debug.Log("Before Setting a Connection");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        Debug.Log("After Setting a Connection");
         NetworkManager.Singleton.StartClient();
-        LoadSceneServerRpc("Scene1", LoadSceneMode.Single);
-        //Transform var = Instantiate(spawnObject);
-    }
+        Debug.Log("Started");
 
+        LoadSceneServerRpc("Scene1", LoadSceneMode.Single);
+        
+    }
 
     void ConnectToServer2Clicked()
     {
         NetworkManager.Singleton.Shutdown();
+        //StartCoroutine(WaitForShutdown());
+        Debug.Log("Before Setting a Connection");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        Debug.Log("After Setting a Connection");
         NetworkManager.Singleton.StartClient();
         LoadSceneServerRpc("Scene2", LoadSceneMode.Single);
-        //Transform var = Instantiate(spawnObject);
+        
     }
 
     private void Update()
@@ -70,5 +79,10 @@ public class ServerButtonsBehaviour : NetworkBehaviour
     public void LoadSceneServerRpc(string sceneName, LoadSceneMode mode)
     {
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, mode);
+    }
+
+    IEnumerator WaitForShutdown()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }
