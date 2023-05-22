@@ -30,37 +30,18 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         connectToServer2Button.clicked += ConnectToServer2Clicked;
         #endregion
     }
-    
-
-    public override void OnNetworkSpawn()
-    {
-        
-    }
 
     void ConnectToServer1Clicked()
     {
         NetworkManager.Singleton.Shutdown();
-        //StartCoroutine(WaitForShutdown());
-        Debug.Log("Before Setting a Connection");
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
-        Debug.Log("After Setting a Connection");
-        NetworkManager.Singleton.StartClient();
-        Debug.Log("Started");
+        StartCoroutine(WaitForShutdown("Scene1", LoadSceneMode.Single, 7777));
 
-        LoadSceneServerRpc("Scene1", LoadSceneMode.Single);
-        
     }
 
     void ConnectToServer2Clicked()
     {
         NetworkManager.Singleton.Shutdown();
-        //StartCoroutine(WaitForShutdown());
-        Debug.Log("Before Setting a Connection");
-        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
-        Debug.Log("After Setting a Connection");
-        NetworkManager.Singleton.StartClient();
-        LoadSceneServerRpc("Scene2", LoadSceneMode.Single);
-        
+        StartCoroutine(WaitForShutdown("Scene2", LoadSceneMode.Single, 7778));
     }
 
     private void Update()
@@ -81,8 +62,11 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, mode);
     }
 
-    IEnumerator WaitForShutdown()
+    IEnumerator WaitForShutdown(string sceneName, LoadSceneMode mode, ushort portNumber)
     {
         yield return new WaitForSeconds(1f);
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", portNumber, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        LoadSceneServerRpc(sceneName, mode);
     }
 }
