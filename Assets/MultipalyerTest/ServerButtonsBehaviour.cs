@@ -37,10 +37,13 @@ public class ServerButtonsBehaviour : NetworkBehaviour
 
     void ConnectToServer1Clicked()
     {
+        //NetworkManager.Singleton.Shutdown();
+        //Destroy(NetworkManager.Singleton);
         NetworkManager.Singleton.Shutdown();
-        Destroy(NetworkManager.Singleton);
-        //NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
-        SceneManager.LoadScene("Scene1");
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
+        
         //Transform var = Instantiate(spawnObject);
     }
 
@@ -48,11 +51,13 @@ public class ServerButtonsBehaviour : NetworkBehaviour
     void ConnectToServer2Clicked()
     {
         //ChangeSceneServerRpc();
-        NetworkManager.Singleton.Shutdown();
-        Destroy(NetworkManager.Singleton);
+        //NetworkManager.Singleton.Shutdown();
+        //Destroy(NetworkManager.Singleton);
         //NetworkManager.Singleton.OnClientDisconnectCallback += Method;
-        //NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
-        SceneManager.LoadScene("Scene2");
+        NetworkManager.Singleton.Shutdown();
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        NetworkManager.Singleton.StartClient(); 
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
         //Transform var = Instantiate(spawnObject);
     }
 

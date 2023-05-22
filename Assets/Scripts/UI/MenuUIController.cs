@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 
 //Stript that handles Menu UI logic in MainMenu Scene 
 public class MenuUIController : NetworkBehaviour
@@ -100,15 +101,19 @@ public class MenuUIController : NetworkBehaviour
 
     void StartServer1()
     {
-        SceneManager.LoadScene("Scene1");
-        SceneManager.sceneLoaded += StartingServer;
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
+        //SceneManager.sceneLoaded += StartingServer;
     }
 
     void StartServer2()
     {
-        SceneManager.LoadScene("Scene2");
-        SceneManager.sceneLoaded += StartingServer;
-        //NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
+        
+        //SceneManager.sceneLoaded += StartingServer;
     }
 
     public void StartingServer(Scene scene, LoadSceneMode mode)
@@ -124,8 +129,11 @@ public class MenuUIController : NetworkBehaviour
         //PlayerDatabase.ResetStats();
         //new LabyrinthDatabase();
         //LabyrinthDatabase.ResetStats();
-        SceneManager.LoadScene("Scene1");
-        SceneManager.sceneLoaded += JoiningServer;
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
+        //SceneManager.sceneLoaded += JoiningServer;
+        
     }
 
     void JoinServer2()
@@ -134,8 +142,11 @@ public class MenuUIController : NetworkBehaviour
         //PlayerDatabase.ResetStats();
         //new LabyrinthDatabase();
         //LabyrinthDatabase.ResetStats();
-        SceneManager.LoadScene("Scene2");
-        SceneManager.sceneLoaded += JoiningServer;
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
+        //SceneManager.sceneLoaded += JoiningServer;
+        
     }
 
     public void JoiningServer(Scene scene, LoadSceneMode mode)
