@@ -38,36 +38,32 @@ public class ServerButtonsBehaviour : NetworkBehaviour
     void ConnectToServer1Clicked()
     {
         NetworkManager.Singleton.Shutdown();
+        Destroy(NetworkManager.Singleton);
         //NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
-        //NetworkManager.Singleton.StartClient();
         SceneManager.LoadScene("Scene1");
-        //SceneManager.sceneLoaded += JoiningServer;
         //Transform var = Instantiate(spawnObject);
     }
 
 
     void ConnectToServer2Clicked()
     {
-        //NetworkManager.Singleton.SceneManager.
+        //ChangeSceneServerRpc();
         NetworkManager.Singleton.Shutdown();
+        Destroy(NetworkManager.Singleton);
         //NetworkManager.Singleton.OnClientDisconnectCallback += Method;
         //NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
-        //NetworkManager.Singleton.StartClient();
         SceneManager.LoadScene("Scene2");
-        //SceneManager.sceneLoaded += JoiningServer;
         //Transform var = Instantiate(spawnObject);
     }
 
+    [ServerRpc (RequireOwnership = false)]
+    public void ChangeSceneServerRpc()
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
+    }
     public void Method(ulong temp)
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
-        NetworkManager.Singleton.StartClient();
-    }
-
-    public void JoiningServer(Scene scene, LoadSceneMode mode)
-    {
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
         NetworkManager.Singleton.StartClient();
     }
 
