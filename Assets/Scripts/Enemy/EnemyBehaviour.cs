@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class EnemyBehaviour : NetworkBehaviour
 {
     public delegate void EnemyAttacked();
     public static event EnemyAttacked Attacked;
@@ -20,11 +21,16 @@ public class EnemyBehaviour : MonoBehaviour
     float totalAngle = 360;
     private static int NUMBER_OF_RAYS = 50;
 
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         //_player = GameManager.GetPlayer().getPlayerObject();    //getting player object               //wa¿ne
-        animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+        //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -79,6 +85,9 @@ public class EnemyBehaviour : MonoBehaviour
             transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
+
+    
+
     private void OnCollisionStay2D(Collision2D collision)
     {
         if ((collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerWand")) && Time.time > _attackDelay)

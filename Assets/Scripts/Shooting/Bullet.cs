@@ -24,13 +24,7 @@ public class Bullet : NetworkBehaviour
         if (collision.collider.CompareTag("Player") || collision.collider.CompareTag("PlayerWand")) return; //ignore ALL players colliders (do not destroy projectile when hit a player)
         GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
         //animator.Play("BulletExplosion");
-        DestoryServerRpc();
-    }
-    [ServerRpc(RequireOwnership = false)]
-    private void DestoryServerRpc()
-    {
-        GetComponent<NetworkObject>().Despawn();   
-        //Destroy(gameObject);
+        GetComponent<NetworkObject>().Despawn();
     }
 
 }

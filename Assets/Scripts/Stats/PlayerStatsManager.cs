@@ -5,16 +5,16 @@ using UnityEngine.SceneManagement;
 public class PlayerStatsManager : MonoBehaviour
 {
     public Stat armor; //do dodania w bazie danych
-    public Animator animator;
+    //public Animator animator;
 
     private void Start()
     {
-        animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+        //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage)       ////function that is called to take damage
     {
-        animator.SetTrigger("Damage");
+        //animator.SetTrigger("Damage");
         damage -= armor.GetValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
         PlayerDatabase.currentHp -= damage;
@@ -28,7 +28,7 @@ public class PlayerStatsManager : MonoBehaviour
 
     public void Die()
     {
-        animator.Play("Die");
+        //animator.Play("Die");
     }
 
 }

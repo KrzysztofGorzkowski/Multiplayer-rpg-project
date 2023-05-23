@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ public class Shooting : NetworkBehaviour
         {
             _nextFire = Time.time + _fireRate;
             //animator.SetTrigger("Shot");
-            this.ShootServerRpc(firePoint.up);
+            ShootServerRpc(firePoint.up);
         }
     }
     [ServerRpc]
@@ -41,12 +42,13 @@ public class Shooting : NetworkBehaviour
         bullet.GetComponent<NetworkObject>().Spawn(true);
         bullet.GetComponent<Bullet>().SetDamage(PlayerDatabase.Damage()); //????? czy to dobrze??
         Physics2D.IgnoreLayerCollision(7,6);    //ignoring ALL players collisions using LAYERS (player have Layer 6 named "Action" bullet has layer "Bullet" (7)
-        //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), transform.GetChild(0).GetComponent<Collider2D>());    //ignoring player collisions
+        //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), shooter.gameObject.GetComponent<Collider2D>());    //ignoring player collisions
         //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), firePoint.GetComponent<Collider2D>());                //ignoring firePoint collisions
         //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), NetworkManager.Singleton.LocalClient.PlayerObject.transform.GetChild(0).GetComponent<Collider2D>());    //ignoring player collisions
         //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), NetworkManager.Singleton.LocalClient.PlayerObject.transform.GetChild(2).GetComponent<Collider2D>());                //ignoring firePoint collisions
         Rigidbody2D rigidbody =  bullet.GetComponent<Rigidbody2D>();
         Debug.Log("Y: " + y);
+        
         rigidbody.AddForce(y * _bulletForce.Value, ForceMode2D.Impulse);
     }
 }
