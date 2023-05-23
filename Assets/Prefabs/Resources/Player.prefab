@@ -398,7 +398,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   armor:
     _baseValue: 0
-  animator: {fileID: 0}
 --- !u!114 &-3752883538979425481
 MonoBehaviour:
   m_ObjectHideFlags: 0

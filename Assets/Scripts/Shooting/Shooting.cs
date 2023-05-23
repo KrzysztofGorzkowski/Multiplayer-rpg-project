@@ -25,6 +25,11 @@ public class Shooting : NetworkBehaviour
         
     }
 
+    private void Start()
+    {
+        Physics2D.IgnoreLayerCollision(7, 6);    //ignoring ALL players collisions using LAYERS (player have Layer 6 named "Action" bullet has layer "Bullet" (7)
+    }
+
     // Update is called once per frame
     void Update()
     { 
@@ -41,11 +46,6 @@ public class Shooting : NetworkBehaviour
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);  //spawn bulet
         bullet.GetComponent<NetworkObject>().Spawn(true);
         bullet.GetComponent<Bullet>().SetDamage(PlayerDatabase.Damage()); //????? czy to dobrze??
-        Physics2D.IgnoreLayerCollision(7,6);    //ignoring ALL players collisions using LAYERS (player have Layer 6 named "Action" bullet has layer "Bullet" (7)
-        //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), shooter.gameObject.GetComponent<Collider2D>());    //ignoring player collisions
-        //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), firePoint.GetComponent<Collider2D>());                //ignoring firePoint collisions
-        //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), NetworkManager.Singleton.LocalClient.PlayerObject.transform.GetChild(0).GetComponent<Collider2D>());    //ignoring player collisions
-        //Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), NetworkManager.Singleton.LocalClient.PlayerObject.transform.GetChild(2).GetComponent<Collider2D>());                //ignoring firePoint collisions
         Rigidbody2D rigidbody =  bullet.GetComponent<Rigidbody2D>();
         Debug.Log("Y: " + y);
         
