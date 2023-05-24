@@ -71,10 +71,10 @@ public class MenuUIController : NetworkBehaviour
         var _startServer2Button = mainMenu.Q<Button>("startServer2Button");
         _startServer2Button.clicked -= StartServer2;
 
-        var _settingsButton = mainMenu.Q<Button>("settings-button");
+        var _settingsButton = mainMenu.Q<Button>("settingsButton");
         _settingsButton.clicked -= SwitchPanels;
 
-        var _exitButton = mainMenu.Q<Button>("exit-button");
+        var _exitButton = mainMenu.Q<Button>("exitButton");
         _exitButton.clicked -= Application.Quit;
 
         var _backButton = settings.Q<Button>("back-button");

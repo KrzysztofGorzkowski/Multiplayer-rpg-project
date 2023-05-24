@@ -8,7 +8,7 @@ using System.Threading;
 using Unity.Netcode;
 using UnityEngine;
 
-public class TCPTestServer : NetworkBehaviour
+public class TCPTestServer1 : NetworkBehaviour
 {
 	#region private members 	
 	/// <summary> 	
@@ -24,7 +24,6 @@ public class TCPTestServer : NetworkBehaviour
 	/// Create handle to connected tcp client. 	
 	/// </summary> 	
 	private TcpClient connectedTcpClient;
-
 
 	#endregion
 
@@ -52,7 +51,7 @@ public class TCPTestServer : NetworkBehaviour
 		try
 		{
 			// Create listener on localhost port 7778. 			
-			tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 7777);
+			tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 7778);
 			tcpListener.Start();
 			Debug.Log("Server is listening");
 			Byte[] bytes = new Byte[1024];
@@ -73,6 +72,7 @@ public class TCPTestServer : NetworkBehaviour
 							string clientMessage = Encoding.ASCII.GetString(incommingData);
 							Debug.Log("client message received as: " + clientMessage);
 							ServerButtonsBehaviour.numberOfPlayersOnAnotherServer.Value = Int32.Parse(clientMessage);
+
 						}
 					}
 				}

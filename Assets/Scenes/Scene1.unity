@@ -195,6 +195,8 @@ GameObject:
   - component: {fileID: 1119427162}
   - component: {fileID: 1119427161}
   - component: {fileID: 1119427163}
+  - component: {fileID: 1119427164}
+  - component: {fileID: 1119427165}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -215,7 +217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   serverPanel: {fileID: 1760802096}
-  labyrinthPrefab: {fileID: 8016696164786454114, guid: 1506d906bfee83f49a07f307d8bf6618, type: 3}
 --- !u!4 &1119427162
 Transform:
   m_ObjectHideFlags: 0
@@ -248,6 +249,30 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &1119427164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119427160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052d19f2db4ff434f98f8f033c8fc959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1119427165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119427160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d295d0ef3f95eec4c981472b79953604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1308335108
 GameObject:
   m_ObjectHideFlags: 0

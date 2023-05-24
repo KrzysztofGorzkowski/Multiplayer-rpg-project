@@ -8,7 +8,7 @@ using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
-public class TCPTestClient : NetworkBehaviour
+public class TCPTestClient1 : NetworkBehaviour
 {
 	#region private members 	
 	private TcpClient socketConnection;
@@ -51,7 +51,7 @@ public class TCPTestClient : NetworkBehaviour
 
 		try
 		{
-			socketConnection = new TcpClient("127.0.0.1", 7778);
+			socketConnection = new TcpClient("127.0.0.1", 7777);
 			Byte[] bytes = new Byte[1024];
 			while (true)
 			{
@@ -67,7 +67,6 @@ public class TCPTestClient : NetworkBehaviour
 						// Convert byte array to string message. 						
 						string serverMessage = Encoding.ASCII.GetString(incommingData);
 						Debug.Log("server message received as: " + serverMessage);
-						ServerButtonsBehaviour.numberOfPlayersOnAnotherServer.Value = Int32.Parse(serverMessage);
 					}
 				}
 			}

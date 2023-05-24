@@ -13,10 +13,11 @@ public class ServerButtonsBehaviour : NetworkBehaviour
     //main menu panel and buttons
     public UIDocument serverPanel;
     private NetworkVariable<int> numberOfPlayers = new NetworkVariable<int>();
+    public static NetworkVariable<int> numberOfPlayersOnAnotherServer = new NetworkVariable<int>();
 
     void OnEnable()
     {
-
+        numberOfPlayersOnAnotherServer.Value = 0;
         if (serverPanel == null)
             return;
 
@@ -28,6 +29,7 @@ public class ServerButtonsBehaviour : NetworkBehaviour
 
         var connectToServer2Button = _serverPanel.Q<Button>("connectToServer2");
         connectToServer2Button.clicked += ConnectToServer2Clicked;
+
         #endregion
     }
 
@@ -35,7 +37,6 @@ public class ServerButtonsBehaviour : NetworkBehaviour
     {
         NetworkManager.Singleton.Shutdown();
         StartCoroutine(WaitForShutdown("Scene1", LoadSceneMode.Single, 7777));
-
     }
 
     void ConnectToServer2Clicked()
@@ -44,16 +45,17 @@ public class ServerButtonsBehaviour : NetworkBehaviour
         StartCoroutine(WaitForShutdown("Scene2", LoadSceneMode.Single, 7778));
     }
 
+
+
     private void Update()
     {
-        serverPanel.rootVisualElement.Q<Label>("numberOfPlayers").text = "Connected Players: " + numberOfPlayers.Value.ToString();
+        serverPanel.rootVisualElement.Q<Label>("numberOfPlayers").text = "Connected Players: " + numberOfPlayers.Value.ToString() ;
 
         if (!IsServer)
         {
             return;
         }
-
-        numberOfPlayers.Value = NetworkManager.Singleton.ConnectedClients.Count;
+        numberOfPlayers.Value = NetworkManager.Singleton.ConnectedClients.Count + numberOfPlayersOnAnotherServer.Value;
     }
 
     [ServerRpc(RequireOwnership = false)]
