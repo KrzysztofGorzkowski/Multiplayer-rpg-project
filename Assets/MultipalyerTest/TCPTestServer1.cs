@@ -72,6 +72,7 @@ public class TCPTestServer1 : NetworkBehaviour
 							string clientMessage = Encoding.ASCII.GetString(incommingData);
 							Debug.Log("client message received as: " + clientMessage);
 							ServerButtonsBehaviour.numberOfPlayersOnAnotherServer.Value = Int32.Parse(clientMessage);
+							Debug.Log("numberOfPlayersOnAnotherServer: " + ServerButtonsBehaviour.numberOfPlayersOnAnotherServer.Value.ToString());
 
 						}
 					}

@@ -49,6 +49,13 @@ public class ServerButtonsBehaviour : NetworkBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Number of players on local server: " + NetworkManager.Singleton.ConnectedClients.Count.ToString() + "\n" + 
+                "Number of players on another server: " + numberOfPlayersOnAnotherServer.Value.ToString());
+
+        }
+
         serverPanel.rootVisualElement.Q<Label>("numberOfPlayers").text = "Connected Players: " + numberOfPlayers.Value.ToString() ;
 
         if (!IsServer)

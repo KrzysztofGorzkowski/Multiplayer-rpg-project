@@ -17,15 +17,18 @@ public class TCPTestClient : NetworkBehaviour
 	// Use this for initialization 	
 	void Start()
 	{
+		/*
 		if (IsClient) return;
 		NetworkManager.Singleton.OnClientConnectedCallback += SendMessage;
 		NetworkManager.Singleton.OnClientDisconnectCallback += SendMessage;
+		*/
 		ConnectToTcpServer();
 	}
 	// Update is called once per frame
 	void Update()
 	{
-
+		if (IsClient) return;
+		SendMessage(1);
 	}
 	/// <summary> 	
 	/// Setup socket connection. 	
@@ -82,6 +85,7 @@ public class TCPTestClient : NetworkBehaviour
 	/// </summary> 	
 	private void SendMessage(ulong temp)
 	{
+
 		if (socketConnection == null)
 		{
 			return;
@@ -97,7 +101,7 @@ public class TCPTestClient : NetworkBehaviour
 				byte[] clientMessageAsByteArray = Encoding.ASCII.GetBytes(clientMessage);
 				// Write byte array to socketConnection stream.                 
 				stream.Write(clientMessageAsByteArray, 0, clientMessageAsByteArray.Length);
-				Debug.Log("Client sent his message - should be received by server");
+				Debug.Log("Client sent his message - should be received by server. Massage sent: " + clientMessage);
 			}
 		}
 		catch (SocketException socketException)
