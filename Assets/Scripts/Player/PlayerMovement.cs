@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : NetworkBehaviour
 {
+    public Transform spawnObject;
     public GameObject firePoint;
 
     private Rigidbody2D _rigidbody;
-    public Animator animator;
+    private static GameObject _camera;
+    //public Animator animator;
     public enum Direction
     {
         UP = 0, DOWN, LEFT, RIGHT
@@ -38,22 +41,36 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!IsOwner) return;
         _rigidbody = GetComponent<Rigidbody2D>();
-        animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+        //LoadCamera();
+        //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
+
+        //var startPos = GameManager.GetLabirynth().GetStartPos();
+        transform.position = new Vector3(-3, -3, 0);
+        //transform.position = new Vector3(startPos.x + 1.05f, startPos.y + 1.25f, -2f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            if (!IsOwner) return;
+            Transform var = Instantiate(spawnObject);
+
+            var.transform.SetPositionAndRotation(new Vector3(0, 0, 0), new Quaternion());
+            var.GetComponent<NetworkObject>().Spawn(true);
+        }
+
         //getting movement from the player
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-        //Debug.Log(movement);
     }
     void FixedUpdate()
     {
-
-        if(movement.x!=0 && movement.y != 0)   //limit the speed to 70% when the player is moving diagonally
+        if (!IsOwner) return;
+        if (movement.x!=0 && movement.y != 0)   //limit the speed to 70% when the player is moving diagonally
         {
             _moveLimiter = 0.7f;
         }
@@ -67,23 +84,24 @@ public class PlayerMovement : MonoBehaviour
         if (movement == upDirection || movement == upRightDirection || movement == upLeftDirection)
         {
             firePoint.transform.position = transform.position + upFirePoint;
-            animator.SetInteger("Direction", (int)Direction.UP);
+            //animator.SetInteger("Direction", (int)Direction.UP);
         }
         else if (movement == leftDirection)
         {
             firePoint.transform.position = transform.position + leftFirePoint;
-            animator.SetInteger("Direction", (int)Direction.LEFT);
+            //animator.SetInteger("Direction", (int)Direction.LEFT);
         }
         else if (movement == rightDirection)
         {
             firePoint.transform.position = transform.position + rightFirePoint;
-            animator.SetInteger("Direction", (int)Direction.RIGHT);
+            //animator.SetInteger("Direction", (int)Direction.RIGHT);
         }
         else if (movement == downDirection || movement == downRightDirection || movement == downLefttDirection)
         {
             firePoint.transform.position = transform.position + downFirePoint;
-            animator.SetInteger("Direction", (int)Direction.DOWN);
+            //animator.SetInteger("Direction", (int)Direction.DOWN);
         }
 
     }
+   
 }

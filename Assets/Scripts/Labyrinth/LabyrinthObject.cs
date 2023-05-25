@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LabyrinthObject
 {
-    public Vector2Int pos = new Vector2Int();     //position
+    /*public Vector2Int pos = new Vector2Int();     //position
     public Type type = new Type();                //type of object
 
     public LabyrinthObject(Type type)
@@ -22,5 +22,5 @@ public class LabyrinthObject
         LABYRINTH_END,
         ENEMY,
         KEYS
-    }
+    }*/
 }

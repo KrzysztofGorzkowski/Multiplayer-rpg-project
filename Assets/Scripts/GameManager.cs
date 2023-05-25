@@ -1,57 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
-using System;
-using UnityEditor;
 
 public class GameManager : MonoBehaviour
 {
-    //private const int LABYRINTH_SIZE = 9;  //the size of the labyrinth corresponding to the length of the side of the square labyrinth
     private static Labyrinth _labyrinth;
-    private static Player _player;
-    private static GameObject _camera;
-
-    public static bool isFinishActive; //info is the finish active (needed to swap the finish tile)
-
     // Start is called before the first frame update
     void Start()
     {
-        isFinishActive = false;
-        new LabyrinthDatabase();
-        LabyrinthDatabase.ResetStats();
-        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize()); //cutting the labyrinth and creating a labyrinth graph
-        _player = new Player(_labyrinth.GetStartPos());             //creating a player
-        LoadCamera();                                               //creating a camera to track the player
-
+        
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if ((!isFinishActive)&&(Labyrinth.numberOfKeys==Labyrinth.numberOfPickedUpKeys))
-        {
-            isFinishActive = true;
-            _labyrinth.SwapTeleportEndTile();
-        }
+        
     }
 
-
-    private void LoadCamera() //the function of creating a camera to track the player
+    [ServerRpc]
+    public static void LoadLabirynthServerRpc()
     {
-        GameObject cameraPrefab = Resources.Load("Camera") as GameObject;
-        _camera = GameObject.Instantiate<GameObject>(cameraPrefab);
-        _camera.GetComponent<PlayerCam>().SetTarget(_player.getPlayerObject());
-    } 
+        /*
+        new LabyrinthDatabase();
+        LabyrinthDatabase.ResetStats();
+        _labyrinth = new Labyrinth(LabyrinthDatabase.LabrynthSize());
+        */
+        
+        //GameObject objectToSpawn1 = GameObject.Find("Labyrinth");
+        //objectToSpawn1.GetComponent<NetworkObject>().Spawn(true);
+        //GameObject objectToSpawn2 = GameObject.Find("Tilemap");
+        //objectToSpawn2.AddComponent<NetworkObject>();
+        //NetworkManager.Singleton.AddNetworkPrefab(objectToSpawn2);
+        //objectToSpawn2.GetComponent<NetworkObject>().Spawn(true);
+        //objectToSpawn2.transform.parent = objectToSpawn1.transform;
 
-    public static GameObject GetCamera()
-    {
-        return _camera;
     }
-
-    public static Player GetPlayer()
-    {
-        return _player;
-    }
-
     public static Labyrinth GetLabirynth()
     {
         return _labyrinth;

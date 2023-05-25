@@ -26,8 +26,8 @@ public class KeyPickUpTriggerScript : MonoBehaviour
             Debug.Log("KeyPickUpEvent Invoked");
             KeyPickedUp();
         }
-        Labyrinth.numberOfPickedUpKeys++;
-        Debug.Log("Zebrano " + Labyrinth.numberOfPickedUpKeys.ToString() + " z " + Labyrinth.numberOfKeys.ToString() + " kluczy");
+        //Labyrinth.numberOfPickedUpKeys++;
+        //Debug.Log("Zebrano " + Labyrinth.numberOfPickedUpKeys.ToString() + " z " + Labyrinth.numberOfKeys.ToString() + " kluczy");
     }
 
     private void End()

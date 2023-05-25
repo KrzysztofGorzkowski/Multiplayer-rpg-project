@@ -3,10 +3,11 @@ using System;
 using System.Linq;
 using UnityEngine.Tilemaps;
 using System.IO;
+using Unity.Netcode;
 
 public class Labyrinth
 {
-    private System.Random _rnd = new System.Random();
+    /*private System.Random _rnd = new System.Random();
     private int[,] _tiles;                              //two-dimensional tiles array
     private int _maxLength;                             //is used to determine the farthest position of the end of the labyrinth
     private Vector2Int _startPos;                       //start position of the labyrinth
@@ -59,8 +60,8 @@ public class Labyrinth
         _tiles[_finishPos.x, _finishPos.y] = (int)LabyrinthObject.Type.LABYRINTH_END;   //set the starting position as LABYRINTH_END
         _labyrinthGraph = new LabyrinthGraph(_startPos, _tiles);                        //creating a labyrinth graph
 
-        _labyrinthGraph.SpawnObject(_minumumDistanceBetweenEnemies, LabyrinthObject.Type.ENEMY);    //spawn enemies
-        _labyrinthGraph.SpawnObject(_minumumDistanceBetweenKeys, LabyrinthObject.Type.KEYS);        //spawn keys
+        //_labyrinthGraph.SpawnObject(_minumumDistanceBetweenEnemies, LabyrinthObject.Type.ENEMY);    //spawn enemies
+        //_labyrinthGraph.SpawnObject(_minumumDistanceBetweenKeys, LabyrinthObject.Type.KEYS);        //spawn keys
 
         LoadTileMap();
 
@@ -158,6 +159,7 @@ public class Labyrinth
         _labyrinthPrefab = Resources.Load("Labyrinth") as GameObject;    //load the labyrinth prefab
         _labyrinthPrefab = UnityEngine.Object.Instantiate(_labyrinthPrefab);
         _labyrinthPrefab.name = "Labyrinth";
+        
 
         Vector3Int[] positions = new Vector3Int[_size.x * _size.y];    //array of positions
         Tile[] tileArray = new Tile[positions.Length];         //array of tile base
@@ -224,7 +226,9 @@ public class Labyrinth
                     break;
             }
         }
+        
         _labyrinthPrefab.transform.GetChild(0).gameObject.GetComponent<Tilemap>().SetTiles(positions, tileArray);  //sett the appropriate tileBase in the appropriate positions for the tilemap
+        //_labyrinthPrefab.GetComponent<NetworkObject>().Spawn(true);
     }
 
     private void CreateFinishCheck() //creating an object that will check if the player has picked up all the keys after reaching the finish
@@ -258,5 +262,7 @@ public class Labyrinth
         TileBase endOn = Resources.Load("TeleportFinishON") as TileBase;
         _labyrinthPrefab.transform.GetChild(0).gameObject.GetComponent<Tilemap>().SwapTile(endOff, endOn);
     }
+
+    */
 
 }

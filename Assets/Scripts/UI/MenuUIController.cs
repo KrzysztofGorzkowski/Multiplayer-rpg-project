@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 
 //Stript that handles Menu UI logic in MainMenu Scene 
-public class MenuUIController : MonoBehaviour
+public class MenuUIController : NetworkBehaviour
 {
     //main menu panel and buttons
     public UIDocument mainMenuPanel;
@@ -25,17 +27,26 @@ public class MenuUIController : MonoBehaviour
         settings.visible = false;
 
         #region buttonEvents
-        var startButton = mainMenu.Q<Button>("start-button");
-        startButton.clicked += PlayGame;
+        var _joinServer1Button = mainMenu.Q<Button>("joinServer1Button");
+        _joinServer1Button.clicked += JoinServer1;
 
-         var settingsButton = mainMenu.Q<Button>("settings-button");
-        settingsButton.clicked += SwitchPanels;
+        var _joinServer2Button = mainMenu.Q<Button>("joinServer2Button");
+        _joinServer2Button.clicked += JoinServer2;
 
-        var exitButton = mainMenu.Q<Button>("exit-button");
-        exitButton.clicked += Application.Quit;
+        var _startServer1Button = mainMenu.Q<Button>("startServer1Button");
+        _startServer1Button.clicked += StartServer1;
 
-        var backButton = settings.Q<Button>("back-button");
-        backButton.clicked += SwitchPanels;
+        var _startServer2Button = mainMenu.Q<Button>("startServer2Button");
+        _startServer2Button.clicked += StartServer2;
+
+        var _settingsButton = mainMenu.Q<Button>("settingsButton");
+        _settingsButton.clicked += SwitchPanels;
+
+        var _exitButton = mainMenu.Q<Button>("exitButton");
+        _exitButton.clicked += Application.Quit;
+
+        var _backButton = settings.Q<Button>("back-button");
+        _backButton.clicked += SwitchPanels;
         #endregion
     }
 
@@ -48,17 +59,26 @@ public class MenuUIController : MonoBehaviour
             return;
 
         #region buttonEvents
-        var startButton = mainMenu.Q<Button>("start-button");
-        startButton.clicked -= PlayGame;
+        var _joinServer1Button = mainMenu.Q<Button>("joinServer1Button");
+        _joinServer1Button.clicked -= JoinServer1;
 
-        var settingsButton = mainMenu.Q<Button>("settings-button");
-        settingsButton.clicked -= SwitchPanels;
+        var _joinServer2Button = mainMenu.Q<Button>("joinServer2Button");
+        _joinServer2Button.clicked -= JoinServer2;
 
-        var exitButton = mainMenu.Q<Button>("exit-button");
-        exitButton.clicked -= Application.Quit;
+        var _startServer1Button = mainMenu.Q<Button>("startServer1Button");
+        _startServer1Button.clicked -= StartServer1;
 
-        var backButton = settings.Q<Button>("back-button");
-        backButton.clicked -= SwitchPanels;
+        var _startServer2Button = mainMenu.Q<Button>("startServer2Button");
+        _startServer2Button.clicked -= StartServer2;
+
+        var _settingsButton = mainMenu.Q<Button>("settingsButton");
+        _settingsButton.clicked -= SwitchPanels;
+
+        var _exitButton = mainMenu.Q<Button>("exitButton");
+        _exitButton.clicked -= Application.Quit;
+
+        var _backButton = settings.Q<Button>("back-button");
+        _backButton.clicked -= SwitchPanels;
         #endregion
     }
 
@@ -79,12 +99,48 @@ public class MenuUIController : MonoBehaviour
         settings.visible = !settings.visible;
     }
 
-    void PlayGame()
+    void StartServer1()
     {
-        new PlayerDatabase();
-        PlayerDatabase.ResetStats();
-        new LabyrinthDatabase();
-        LabyrinthDatabase.ResetStats();
-        SceneManager.LoadScene("LabyrinthScene");
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        //NetworkManager.Singleton.OnServerStarted +=
+        NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
+    }
+
+    void StartServer2()
+    {
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        NetworkManager.Singleton.StartServer();
+        NetworkManager.Singleton.SceneManager.LoadScene("Scene2", LoadSceneMode.Single);
+    }
+
+
+    void JoinServer1()
+    {
+        //new PlayerDatabase();
+        //PlayerDatabase.ResetStats();
+        //new LabyrinthDatabase();
+        //LabyrinthDatabase.ResetStats();
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        LoadSceneServerRpc("Scene1", LoadSceneMode.Single);
+
+    }
+
+    void JoinServer2()
+    {
+        //new PlayerDatabase();
+        //PlayerDatabase.ResetStats();
+        //new LabyrinthDatabase();
+        //LabyrinthDatabase.ResetStats();
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7778, "0.0.0.0");
+        NetworkManager.Singleton.StartClient();
+        LoadSceneServerRpc("Scene2", LoadSceneMode.Single);
+        
+    }
+    [ServerRpc (RequireOwnership = false)]
+    public void LoadSceneServerRpc(string sceneName, LoadSceneMode mode)
+    {
+        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, mode);
     }
 }

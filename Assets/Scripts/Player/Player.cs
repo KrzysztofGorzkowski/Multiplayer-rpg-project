@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class Player
 {
-    private GameObject playerObject;
+    private NetworkObject playerObject;
     
     public Player(Vector2Int startPos)
     {
-        GameObject playerPrefab = Resources.Load("Player") as GameObject;
-        playerObject = GameObject.Instantiate<GameObject>(playerPrefab);
+        playerObject = NetworkManager.Singleton.LocalClient.PlayerObject;
         playerObject.transform.position = new Vector3(startPos.x+1.05f, startPos.y+1.25f, -2f);
     }
 
-    public GameObject getPlayerObject()
+    public NetworkObject getPlayerObject()
     {
         return playerObject;
     }

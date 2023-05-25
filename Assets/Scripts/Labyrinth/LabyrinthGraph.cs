@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LabyrinthGraph
 {
-    private class Node
+    /*private class Node
     { 
         public LabyrinthObject labyrinthObject;
         public Node[] adj;   //table of connected nodes
@@ -202,6 +202,6 @@ public class LabyrinthGraph
                 return Direction.LEFT;
         }
         return Direction.NONE;
-    }
+    }*/
 
 }
