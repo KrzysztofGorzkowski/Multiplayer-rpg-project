@@ -10,7 +10,7 @@ public class AnimationEventsHandler : MonoBehaviour
     //called when Appear animation ends
     public void AppearingFinished()
     {
-        GameManager_OLD.GetPlayer().mobilitySwitch(); //unlocks player movement
+        //GameManager_OLD.GetPlayer().mobilitySwitch(); //unlocks player movement
         //GameManager_OLD.GetLabirynth().SwapTeleportStartTile(); //change start teleport's tile into OFF mode
     }
 
