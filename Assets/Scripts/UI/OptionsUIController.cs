@@ -4,37 +4,38 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 using UnityEditor;
+using Unity.Netcode;
 
 //Script that handles the Gamge Options Logic
-public class OptionsUIController : MonoBehaviour
+public class OptionsUIController : NetworkBehaviour
 {
-    //pause panel and buttons
-    public UIDocument pausePanel;
+    //options panel and buttons
+    public UIDocument optionsPanel;
 
     //settings panel and buttons
     public UIDocument settingsPanel;
+    public UIDocument serverPanel;
 
 
     void OnEnable()
     {
-        if (pausePanel == null || settingsPanel == null)
-            return;
+        if (optionsPanel == null || settingsPanel == null) return;
 
-        var pause = pausePanel.rootVisualElement;
+        var options = optionsPanel.rootVisualElement;
         var settings = settingsPanel.rootVisualElement;
 
-        //by default turn off settings and pause panels
+        //by default turn off settings and options panels
         settings.visible = false;
-        pause.visible = false;
+        options.visible = false;
 
         #region buttonEvents
-        var resumeButton = pause.Q<Button>("resume-button");
-        resumeButton.clicked += ResumeGame;
+        var resumeButton = options.Q<Button>("resume-button");
+        resumeButton.clicked += ExitOptions;
 
-        var settingsButton = pause.Q<Button>("settings-button");
+        var settingsButton = options.Q<Button>("settings-button");
         settingsButton.clicked += SwtichPanels;
 
-        var menuButton = pause.Q<Button>("back-to-main-menu-button");
+        var menuButton = options.Q<Button>("back-to-main-menu-button");
         menuButton.clicked += BackToMainMenu;
 
         var backButton = settings.Q<Button>("back-button");
@@ -44,24 +45,23 @@ public class OptionsUIController : MonoBehaviour
     }
     void OnDisable()
     {
-        var pause = pausePanel.rootVisualElement;
+        var options = optionsPanel.rootVisualElement;
         var settings = settingsPanel.rootVisualElement;
 
-        if (pause == null || settings == null)
-            return;
+        if (options == null || settings == null) return;
 
-        //by default turn off settings and pause panels
+        //by default turn off settings and options panels
         settings.visible = false;
-        pause.visible = false;
+        options.visible = false;
 
         #region buttonEvents
-        var resumeButton = pause.Q<Button>("resume-button");
-        resumeButton.clicked -= ResumeGame;
+        var resumeButton = options.Q<Button>("resume-button");
+        resumeButton.clicked -= ExitOptions;
 
-        var settingsButton = pause.Q<Button>("settings-button");
+        var settingsButton = options.Q<Button>("settings-button");
         settingsButton.clicked -= SwtichPanels;
 
-        var menuButton = pause.Q<Button>("back-to-main-menu-button");
+        var menuButton = options.Q<Button>("back-to-main-menu-button");
         menuButton.clicked -= BackToMainMenu;
 
         var backButton = settings.Q<Button>("back-button");
@@ -72,41 +72,38 @@ public class OptionsUIController : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             var settings = settingsPanel.rootVisualElement;
-            var pause = pausePanel.rootVisualElement;
-            //if settings visible turn off settings panel and go back to pause panel
+            var options = optionsPanel.rootVisualElement;
+            var _serverPanel = serverPanel.rootVisualElement;
+            //if settings visible turn off settings panel and go back to options panel
             if (settings.visible)
                 settings.visible = false;
-            pause.visible = !pause.visible;
-            //if pause panel visible freeze the game
-            Time.timeScale = 1f;
-            if (pause.visible)
-            {
-                Time.timeScale = 0f;
-            }
+            options.visible = !options.visible;
+            _serverPanel.visible = !options.visible;
+            //Debug.Log(options.visible.ToString());
         }
     }
 
     void SwtichPanels()
     {
         var settings = settingsPanel.rootVisualElement;
-        var pause = pausePanel.rootVisualElement;
-        pause.visible = !pause.visible;
+        var options = optionsPanel.rootVisualElement;
+        options.visible = !options.visible;
         settings.visible = !settings.visible;
     }
 
     void BackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenuScene");
-        Time.timeScale = 1f;
+        NetworkManager.Singleton.Shutdown();
+        NetworkManager.Singleton.SceneManager.LoadScene("MainMenuScene", LoadSceneMode.Single);
     }
 
-    void ResumeGame()
+    void ExitOptions()
     {
-        pausePanel.rootVisualElement.visible = false;
-        Time.timeScale = 1f;
+        optionsPanel.rootVisualElement.visible = false;
     }
 
 }

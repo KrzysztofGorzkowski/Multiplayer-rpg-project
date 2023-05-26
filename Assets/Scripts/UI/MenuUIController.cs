@@ -102,7 +102,6 @@ public class MenuUIController : NetworkBehaviour
     void StartServer1()
     {
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData("127.0.0.1", 7777, "0.0.0.0");
-        //NetworkManager.Singleton.OnServerStarted +=
         NetworkManager.Singleton.StartServer();
         NetworkManager.Singleton.SceneManager.LoadScene("Scene1", LoadSceneMode.Single);
     }

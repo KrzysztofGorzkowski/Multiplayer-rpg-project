@@ -1,9 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="/Assets/UI Scripts/Style Sheets/Menu.uss" />
-    <ui:VisualElement name="pause-screen" style="flex-grow: 1; align-items: center; background-image: none;">
-        <ui:VisualElement name="pause-control-panel" style="opacity: 0.6; width: 40%; height: 100%; background-color: rgb(10, 10, 10);">
-            <ui:VisualElement name="pause-title" style="width: 100%; height: 30%;">
-                <ui:Label text="Paused" display-tooltip-when-elided="true" name="pauseLabel" style="-unity-font-style: bold-and-italic; font-size: 74px; -unity-text-align: middle-center; width: 100%; height: 100%; color: rgb(235, 255, 0);" />
+    <Style src="project://database/Assets/UI%20Scripts/Style%20Sheets/Menu.uss?fileID=7433441132597879392&amp;guid=6a0a36e49d8c3514aa9c3cb04e563961&amp;type=3#Menu" />
+    <ui:VisualElement name="options-screen" style="flex-grow: 1; align-items: center; background-image: none;">
+        <ui:VisualElement name="options-control-panel" style="opacity: 0.6; width: 40%; height: 100%; background-color: rgb(10, 10, 10);">
+            <ui:VisualElement name="options-title" style="width: 100%; height: 30%;">
+                <ui:Label text="Options" display-tooltip-when-elided="true" name="optionsLabel" style="-unity-font-style: bold-and-italic; font-size: 74px; -unity-text-align: middle-center; width: 100%; height: 100%; color: rgb(235, 255, 0);" />
             </ui:VisualElement>
             <ui:VisualElement name="button-section" style="width: 100%; height: 50%; align-items: center; justify-content: center;">
                 <ui:Button text="Resume" display-tooltip-when-elided="true" name="resume-button" class="button" style="font-size: 80px;" />
