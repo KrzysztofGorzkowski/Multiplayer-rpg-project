@@ -27,12 +27,12 @@ public class InventoryUIController : MonoBehaviour
     
     private void OnEnable()
     {
-        KeyPickUpTriggerScript.KeyPickedUp += AddKey;
+        //KeyPickUpTriggerScript.KeyPickedUp += AddKey;
     }
 
     private void OnDisable()
     { 
-        KeyPickUpTriggerScript.KeyPickedUp -= AddKey;
+        //KeyPickUpTriggerScript.KeyPickedUp -= AddKey;
     }
 
     private void AddKey()
