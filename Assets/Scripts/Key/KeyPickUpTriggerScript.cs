@@ -8,11 +8,10 @@ public class KeyPickUpTriggerScript : NetworkBehaviour
 {
     public delegate void KeyPickUp();
     public static event KeyPickUp KeyPickedUp;
-    //public Animator animator;
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Dupa");
         if (collision.tag == "KeysCollector")
         {
             PickUpKey();
@@ -23,15 +22,6 @@ public class KeyPickUpTriggerScript : NetworkBehaviour
     {
         transform.GetComponent<Collider2D>().enabled = false;
         DespawnServerRpc();
-        if (KeyPickedUp != null)
-        {
-            //animator.Play("KeyPicked");
-            Debug.Log("KeyPickUpEvent Invoked");
-            KeyPickedUp();
-            GetComponent<NetworkObject>().Despawn();
-        }
-        //Labyrinth.numberOfPickedUpKeys++;
-        //Debug.Log("Zebrano " + Labyrinth.numberOfPickedUpKeys.ToString() + " z " + Labyrinth.numberOfKeys.ToString() + " kluczy");
     }
 
 
