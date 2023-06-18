@@ -28,8 +28,6 @@ public class HeroPanelUIControler : MonoBehaviour
         runTime.Q<Label>("ExpPointsLabel").visible = false;
 
         #region events
-        EnemyStatsManager.ExpGained += UpdateExpBar;
-        EnemyBehaviour.Attacked += UpdateHPBar;
         _heroPanel.Q<Button>("StrLevelUpButton").clicked += IncreaseStrength;
         _heroPanel.Q<Button>("AgiLevelUpButton").clicked += IncreaseAgility;
         _heroPanel.Q<Button>("IntLevelUpButton").clicked += IncreaseIntelect;
@@ -43,8 +41,6 @@ public class HeroPanelUIControler : MonoBehaviour
     private void OnDisable()
     {
         #region events
-        EnemyStatsManager.ExpGained -= UpdateExpBar;
-        EnemyBehaviour.Attacked -= UpdateHPBar;
         if (_heroPanel == null)
             return;
         _heroPanel.Q<Button>("StrLevelUpButton").clicked -= IncreaseStrength;

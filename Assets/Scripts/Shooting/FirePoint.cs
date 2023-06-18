@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class FirePoint : NetworkBehaviour
 {
-    //public Rigidbody2D rb;
     private Vector2 _mousePos;
     private Vector2 _direction;
     private float _angle;
@@ -23,6 +22,5 @@ public class FirePoint : NetworkBehaviour
         _angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg - 90f;
         Quaternion target = Quaternion.Euler(0, 0, _angle);
         transform.rotation = Quaternion.Slerp(transform.rotation, target, 1);
-        //Debug.Log("Mouse position: " + _mousePos + " Direction: " + _direction + " Angle: " + _angle + " Rotation: " + transform.rotation);
     }
 }

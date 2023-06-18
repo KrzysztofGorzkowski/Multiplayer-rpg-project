@@ -17,11 +17,6 @@ public class TCPTestClient1 : NetworkBehaviour
 	// Use this for initialization 	
 	void Start()
 	{
-		/*
-		if (IsClient) return;
-		NetworkManager.Singleton.OnClientConnectedCallback += SendMessage;
-		NetworkManager.Singleton.OnClientDisconnectCallback += SendMessage;
-		*/
 		ConnectToTcpServer();
 	}
 	// Update is called once per frame

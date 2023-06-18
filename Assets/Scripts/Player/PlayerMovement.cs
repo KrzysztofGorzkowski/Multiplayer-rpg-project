@@ -11,7 +11,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private Rigidbody2D _rigidbody;
     private static GameObject _camera;
-    //public Animator animator;
+
     public enum Direction
     {
         UP = 0, DOWN, LEFT, RIGHT
@@ -43,12 +43,8 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (!IsOwner) return;
         _rigidbody = GetComponent<Rigidbody2D>();
-        //LoadCamera();
-        //animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
 
-        //var startPos = GameManager.GetLabirynth().GetStartPos();
         transform.position = new Vector3(-3, -3, 0);
-        //transform.position = new Vector3(startPos.x + 1.05f, startPos.y + 1.25f, -2f);
     }
 
     // Update is called once per frame
@@ -84,22 +80,18 @@ public class PlayerMovement : NetworkBehaviour
         if (movement == upDirection || movement == upRightDirection || movement == upLeftDirection)
         {
             firePoint.transform.position = transform.position + upFirePoint;
-            //animator.SetInteger("Direction", (int)Direction.UP);
         }
         else if (movement == leftDirection)
         {
             firePoint.transform.position = transform.position + leftFirePoint;
-            //animator.SetInteger("Direction", (int)Direction.LEFT);
         }
         else if (movement == rightDirection)
         {
             firePoint.transform.position = transform.position + rightFirePoint;
-            //animator.SetInteger("Direction", (int)Direction.RIGHT);
         }
         else if (movement == downDirection || movement == downRightDirection || movement == downLefttDirection)
         {
             firePoint.transform.position = transform.position + downFirePoint;
-            //animator.SetInteger("Direction", (int)Direction.DOWN);
         }
 
     }
